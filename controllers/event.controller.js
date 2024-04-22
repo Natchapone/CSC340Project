@@ -24,13 +24,13 @@ async function getOrgEvents(req, res) {
 
 async function createEvent(req, res) {
   try {
-    const eventData = req.body; // Event data from the form
-    console.log("eventData:", eventData); // Log eventData to verify its value
+    const eventData = req.body;
+    console.log("eventData:", eventData);
     const orgId = req.params.id; // Retrieve orgId from URL parameters
     console.log("orgId:", orgId); // Log orgId to verify its value
-    eventData.orgId = orgId; // Add orgId to event data
-    const result = await model.createEvent(eventData);// Save event to database
-    res.redirect('/SpartanEvent/OrganizerEvents/' + orgId); // Redirect back to organizer page
+    eventData.orgId = orgId;
+    const result = await model.createEvent(eventData);
+    res.redirect('/SpartanEvent/OrganizerEvents/' + orgId);
   } catch (error) {
     console.error("Error saving event:", error);
     res.status(500).send("Internal Server Error");
@@ -48,9 +48,36 @@ async function deleteEvent(req, res) {
   }
 }
 
+async function renderEditEventPage(req, res) {
+  try {
+    const eventId = req.params.eventId;
+    const event = await model.getEventById(eventId);
+    res.render("edit-event", { event });
+  } catch (error) {
+    console.error("Error rendering edit event page:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function updateEvent(req, res) {
+  try {
+    const eventId = req.params.eventId;
+    const eventData = req.body;
+    await model.updateEvent(eventId, eventData);
+    const orgId = req.body.orgId;
+    res.redirect('/SpartanEvent/OrganizerEvents/' + orgId); 
+  } catch (error) {
+    console.error("Error updating event:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
 module.exports = {
   //export the functions
   getOrgEvents,
   createEvent,
   deleteEvent,
+  renderEditEventPage,
+  updateEvent,
+
 };

@@ -35,20 +35,23 @@
                     <div class="eventContent">
                         <div class="eventContentInner">
                             <div class="eventTitle">
-                                <h2>Title: <%= event.title %>
+                                <h2>Title:
+                                    <%= event.title %>
                                 </h2>
                             </div>
                             <div class="generalDisplay">
                                 <div class="eventImg">
                                     <img src="<%= event.imgPath %>" alt="Event Image">
-                                    <button class="edit-pic-btn" type="button">Edit Pictures</button>
                                 </div>
                                 <div class="dateTimeLocation">
-                                    <p class="date">Date: <%= event.eventDate %>
+                                    <p class="date">Date:
+                                        <%= event.eventDate %>
                                     </p>
-                                    <p class="time">Time: <%= event.eventTime %>
+                                    <p class="time">Time:
+                                        <%= event.eventTime %>
                                     </p>
-                                    <p class="location">Location: <%= event.location %>
+                                    <p class="location">Location:
+                                        <%= event.location %>
                                     </p>
                                 </div>
                             </div>
@@ -60,12 +63,10 @@
                             </div>
                         </div>
 
-                        <div>
-                            <button class="delete-event-btn" data-event-id="<%= event.eventId %>"
-                                type="button">Delete</button>
-                            <button class="edit-event-btn" data-event-id="<%= event.eventId %>"
-                                type="button">Edit</button>
-                        </div>
+                        <button class="delete-event-btn" data-event-id="<%= event.eventId %>"
+                            type="button">Delete</button>
+                        <a class="edit-event-btn"
+                            href="/SpartanEvent/OrganizerEvents/edit/<%= event.eventId %>">Edit</a>
                     </div>
                     <% }); %>
 

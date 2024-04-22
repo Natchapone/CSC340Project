@@ -20,9 +20,21 @@ function deleteEvent(eventId) {
   return db.run(sql, eventId);
 }
 
+async function getEventById(eventId) {
+  const sql = "SELECT * FROM event WHERE eventId = ?";
+  return db.get(sql, eventId);
+}
+async function updateEvent(eventId, eventData) {
+  const { title, eventDate, eventTime, location, imgPath, description } = eventData;
+  const sql = "UPDATE event SET title = ?, eventDate = ?, eventTime = ?, location = ?, imgPath = ?, description = ? WHERE eventId = ?";
+  return db.run(sql, title, eventDate, eventTime, location, imgPath, description, eventId);
+}
+
 module.exports = {
   // export the functions
   getEventsByOrgId,
   createEvent,
   deleteEvent,
+  getEventById,
+  updateEvent,
 };

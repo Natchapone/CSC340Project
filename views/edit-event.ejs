@@ -1,0 +1,36 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Organizer </title>
+    <link rel="stylesheet" href="/css/eventOrgnzr.css">
+    <script src="/scripts/edit-event.js" defer></script>
+</head>
+
+<form id="editEventForm" method="POST" action="/SpartanEvent/OrganizerEvents/updateEvent/<%= event.eventId %>">
+    <div class="eventTitle" style="margin-top: 20px;">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="<%= event.title %>">
+    </div>
+    <div class="generalDisplay">
+        <div class="eventImg">
+            <label for="imgPath">Image URL:</label>
+            <input type="text" id="imgPath" name="imgPath" value="<%= event.imgPath %>">
+        </div>
+        <div class="dateTimeLocation">
+            <label for="eventDate">Date:</label>
+            <input type="text" id="eventDate" name="eventDate" value="<%= event.eventDate %>">
+            <label for="eventTime">Time:</label>
+            <input type="text" id="eventTime" name="eventTime" value="<%= event.eventTime %>">
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" value="<%= event.location %>">
+        </div>
+    </div>
+    <div class="eventDescription" style="margin-bottom: 20px;">
+        <label for="description">Description:</label>
+        <textarea id="description" cols="120" name="description"><%= event.description %></textarea>
+    </div>
+
+    <input type="hidden" id="orgId" name="orgId" value="<%= event.orgId %>">
+
+    <button class="btn" type="submit" id="saveEventBtn">Save Event</button>
+    <button class="btn" type="button" id="cancelBtn">Cancel</button>
+</form>
