@@ -1,0 +1,19 @@
+{
+  "name": "spartanevent",
+  "version": "1.0.0",
+  "description": ">Natchapone Janjon, Yanae Powell, Sebastian Duarte",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^9.4.3",
+    "ejs": "^3.1.9",
+    "express": "^4.19.1",
+    "multer": "^1.4.5-lts.1",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  }
+}

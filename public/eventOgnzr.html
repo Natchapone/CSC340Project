@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Organizer </title>
+    <link rel="stylesheet" href="css/eventOrgnzr.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Spartan Events</h1>
+
+            <nav class="navigation">
+                <ul class="navbar">
+                    <li><a class="navlink" href="user.html">View Events</a></li>
+                    <li><a class="navlink" href="eventOgnzr.html">My Events</a></li>
+                    <li><a class="navlink" href="index.html">Sign Out</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="mainContent">
+            <div id="btnBox">
+                <button class="btn" type="button">New Event ➕ </button>
+            </div>
+
+            <div class="eventContent">
+                <div class="eventContentInner">
+                    <div class="eventTitle" contenteditable="true">
+                        <h2>Title: CS Club Meeting</h2>
+                    </div>
+                    <div class="generalDisplay">
+                        <div class="eventImg">
+                            <img src="images/UNCGlogo.jpg" alt="UNCG logo">
+                            <button class="btn" type="button">Edit Pictures</button>
+                        </div>
+                        <div class="dateTimeLocation">
+                            <p class="date" contenteditable="true">Date: 02/27/2025</p>
+                            <p class="time" contenteditable="true">Time: 6:30 PM</p>
+                            <p class="location" contenteditable="true">Location: Petty Building room 123</p>
+                        </div>
+                    </div>
+                    <div class="eventDescription" contenteditable="true">
+                        <p>Description:</p>
+                        <P>The Computer Science Clue will be holding a meeting to help our fellow CS students
+                            find out more about what we are doing and how we are doing in our CS classes.
+                            This will be a general get-together, feel free to chat and ask questions.
+                        </P>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deleteEvent">
+                <button class="btn" type="button">Delete Event</button>
+            </div>
+        </div>
+    </div>
+</body>
