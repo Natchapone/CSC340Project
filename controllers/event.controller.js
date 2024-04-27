@@ -71,6 +71,70 @@ async function updateEvent(req, res) {
     res.status(500).send("Internal Server Error");
   }
 }
+async function event(req, res) {
+  try {
+    const events = await model.event();
+    res.json(events);
+  } catch (error) {
+    console.error("Error fetching events:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function eventSearch(req, res) {
+  try {
+    const eventId = req.headers.eventid;
+    const events = await model.eventSearch(eventId);
+    res.json(events);
+  } catch (error) {
+    console.error("Error fetching event:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function eventFlag(req, res) {
+  try {
+    const eventId = req.body.eventId;
+    await model.eventFlag(eventId);
+  } catch (error) {
+    console.error("Error flagging event:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function commentSearch(req, res) {
+  try {
+    const eventId = req.headers.eventid;
+    const comments = await model.commentSearch(eventId);
+    res.json(comments);
+  } catch (error) {
+    console.error("Error fetching comments:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function commentFlag(req, res) {
+  try {
+    const userId = req.body.userId;
+    await model.commentFlag(userId);
+  } catch (error) {
+    console.error("Error flagging event:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function commentDelete(req, res) {
+  try {
+    const userId = req.body.userId;
+    const eventId= req.body.eventId;
+    await model.commentDelete(userId, eventId);
+  } catch (error) {
+    console.error("Error flagging event:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+
 
 module.exports = {
   //export the functions
@@ -79,5 +143,10 @@ module.exports = {
   deleteEvent,
   renderEditEventPage,
   updateEvent,
-
+  event,
+  eventSearch,
+  eventFlag,
+  commentSearch,
+  commentFlag,
+  commentDelete,
 };

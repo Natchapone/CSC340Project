@@ -10,5 +10,10 @@ router.post("/OrganizerEvents/:id/newEvent", eventController.createEvent);
 router.delete("/OrganizerEvents/deleteEvent/:eventId", eventController.deleteEvent);
 router.get("/OrganizerEvents/edit/:eventId", eventController.renderEditEventPage);
 router.post("/OrganizerEvents/updateEvent/:eventId", eventController.updateEvent);
-
+router.get('/event', eventController.event);
+router.get('/event/search', eventController.eventSearch);
+router.post('/event/flag', eventController.eventFlag)
+router.get('/comment/search', eventController.commentSearch);
+router.post('/comment/flag', eventController.commentFlag);
+router.post('/comment/delete', eventController.commentDelete);
 module.exports = router;

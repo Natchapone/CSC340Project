@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function(){
     getComments(eventId);
 
     function getEvent(eventId){
-        const eventAPI = `http://localhost:8000/event/search`;
+        const eventAPI = `/SpartanEvent/event/search`;
         fetch (eventAPI, {
             method: 'GET',
             headers: {
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
     function getComments(eventId){
-        const commentAPI = `http://localhost:8000/comment/search`;
+        const commentAPI = `/SpartanEvent/comment/search`;
         fetch (commentAPI, {
             method: 'GET',
             headers: {
@@ -210,13 +210,13 @@ document.addEventListener('DOMContentLoaded', function(){
             return;
         }
 
-        const eventAPI = 'http://localhost:8000/event/delete';
+        const eventAPI = "/SpartanEvent/OrganizerEvents/deleteEvent/" + eventId;
         const reqBody = {
             eventId: eventId,
         }
 
         fetch (eventAPI, {
-            method: 'POST',
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function(){
             return;
         }
 
-        const eventAPI = 'http://localhost:8000/event/flag';
+        const eventAPI = 'SpartanEvent/event/flag';
         const reqBody = {
             eventId: eventId,
         }
@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function(){
             return;
         }
 
-        const commentAPI = 'http://localhost:8000/comment/delete';
+        const commentAPI = 'SpartanEvent/comment/delete';
         const reqBody = {
             userId: userId,
             eventId: eventId,
@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function(){
             return;
         }
 
-        const commentAPI = 'http://localhost:8000/comment/flag';
+        const commentAPI = 'SpartanEvent/comment/flag';
         const reqBody = {
             userId: userId,
         }

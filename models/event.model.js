@@ -30,6 +30,52 @@ async function updateEvent(eventId, eventData) {
   return db.run(sql, title, eventDate, eventTime, location, imgPath, description, eventId);
 }
 
+function event() {
+  const sql = 'SELECT eventId, title, eventDate, '+
+  'eventTime, location, imgPath, description, flag, orgId '+
+  'FROM event ORDER BY eventId DESC;';
+  return db.all(sql);
+}
+
+function eventSearch(eventId) {
+  const sql = `SELECT eventId, title, eventDate, 
+  eventTime, location, imgPath, description, flag, orgId 
+  FROM event WHERE eventId= ?`;
+  return db.get(sql, eventId);
+}
+
+function eventFlag (eventId){
+  const query = `UPDATE organizer
+            SET flag = 1
+            WHERE orgId = (
+			SELECT orgId
+			FROM event
+			WHERE eventId = ?);`;
+  return db.run(query, [eventId]);
+}
+
+function commentSearch(eventId) {
+  const sql = `SELECT comment.content, comment.userId, comment.eventId,
+  user.userName 
+  FROM comment, user 
+  WHERE comment.eventId= ?
+  AND comment.userId = user.userId;`;
+  return db.all(sql, eventId);
+}
+
+function commentFlag (userId){
+  const query = `UPDATE user
+    SET flag = 1
+    WHERE userId= ?;`;
+  return db.run(query, [userId]);
+}
+
+function commentDelete (userId, eventId){
+  const query = `DELETE FROM comment WHERE userId= ?
+  AND eventId=?;`;
+  return db.run(query, [userId, eventId]);
+}
+
 module.exports = {
   // export the functions
   getEventsByOrgId,
@@ -37,4 +83,11 @@ module.exports = {
   deleteEvent,
   getEventById,
   updateEvent,
+  event, 
+  eventSearch,
+  eventFlag,
+  commentSearch,
+  commentFlag,
+  commentDelete,
+
 };
