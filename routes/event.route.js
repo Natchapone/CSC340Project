@@ -3,8 +3,10 @@ const express = require("express");
 const router = express.Router();
 
 const eventController = require("../controllers/event.controller");
+const organizerController = require('../controllers/organizer.controller');
 // set up routes to different requests/pages
 
+router.post('/OrganizerEvents/login', organizerController.login);
 router.get("/OrganizerEvents/:id", eventController.getOrgEvents);
 router.post("/OrganizerEvents/:id/newEvent", eventController.createEvent);
 router.delete("/OrganizerEvents/deleteEvent/:eventId", eventController.deleteEvent);
