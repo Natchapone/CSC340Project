@@ -49,6 +49,7 @@ CREATE TABLE comment (
 	content varchar (300) NOT NULL,
 	userId	INTEGER NOT NULL,
 	eventId	INTEGER NOT NULL,
+	flag INT NOT NULL,
 	PRIMARY KEY (userId, eventId),
 	FOREIGN KEY (userId)
 	REFERENCES user (userId)
