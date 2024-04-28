@@ -51,6 +51,9 @@
                                 <%= event.description %>
                             </p>
                         </div>
+
+                        <button class="flagEvent" eventid="<%= event.eventId %>">Flag Event</button>
+
                         <div class="commentbox">
                             <% event.comments.sort((a, b)=> new Date(a.timestamp) - new
                                 Date(b.timestamp)).forEach(comment => { %>
@@ -61,6 +64,9 @@
                                     <p id="comment-content">
                                         <%= comment.content %>
                                     </p>
+
+                                    <button class="flagComment" commentid="<%= comment.commentId %>">Flag
+                                        Comment</button>
                                 </div>
                                 <% }); %>
                                     <form id="comment-form" action="/users/events/<%= event.eventId %>/comment"

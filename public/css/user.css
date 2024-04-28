@@ -48,22 +48,25 @@ a {
     margin-top: 20px;
 }
 
-.btn, .btnUserList, .flagEvent, .flagComment {
+.btn,
+.btnUserList,
+.flagEvent,
+.flagComment,
 .btn,
 .btnUserList {
-    margin-right: 20px;
     background-color: rgb(38, 40, 41);
-    border: solid 2px white;
-    padding: 10px;
+    border: solid 1px white;
+    padding: 2px;
     text-align: center;
-    font-size: 12px;
+    font-size: 10px;
     cursor: pointer;
     border-radius: 5px;
     color: white;
 }
 
-.flagComment, .flagEvent{
-    margin: 10px;
+.flagEvent {
+    margin-bottom: 5px;
+    margin-left: 5px;
 }
 
 .btnUserList {
