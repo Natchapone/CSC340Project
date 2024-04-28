@@ -185,6 +185,27 @@ async function deleteRSVP(userId, eventId) {
   return db.run(sql, userId, eventId);
 }
 
+function unflagEvent(eventId) {
+  const query = `UPDATE event
+    SET flag = 0
+    WHERE eventId= ?;`;
+  return db.run(query, [eventId]);
+}
+
+function unflagComment (commentId) {
+  const query = `UPDATE comment
+    SET flag = 0
+    WHERE commentId= ?;`;
+  return db.run(query, [commentId]);
+}
+
+function unflagUser (userId) {
+  const query = `UPDATE user
+    SET flag = 0
+    WHERE userId= ?;`;
+  return db.run(query, [userId]);
+}
+
 module.exports = {
   // export the functions
   getEventsByOrgId,
@@ -203,6 +224,10 @@ module.exports = {
   userCommentFlag,
   adminFlaggedEvents,
   adminFlaggedComments,
+  unflagEvent,
+  unflagComment,
+  unflagEvent,
+
 
 
   getRSVPdEventsWithComments,

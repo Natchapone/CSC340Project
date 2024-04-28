@@ -25,6 +25,10 @@ router.get("/Admin/flaggedEvents", eventController.adminFlaggedEvents);
 router.get("/Admin/flaggedComments", eventController.adminFlaggedComments);
 router.get("/userRSVPs", eventController.renderUserRSVPdEvents);
 router.delete("/users/events/rsvp/:eventId", eventController.deleteRSVP);
+router.post("/Admin/unflagEvent", eventController.unflagEvent);
+router.post("/Admin/unflagComment", eventController.unflagComment);
+router.post("/Admin/unflagUser", eventController.unflagUser);
+
 
 
 module.exports = router;

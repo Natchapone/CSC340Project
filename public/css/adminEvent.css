@@ -48,7 +48,8 @@ a {
 }
 
 .btn, .btnUserList, .btnDeleteComment, .btnFlagComment,
-.btnDeleteEvent, .btnFlagEvent {
+.btnDeleteEvent, .btnFlagEvent, .btnUnflagEvent,
+.btnUnflagComment {
     margin-right: 20px;
     background-color: rgb(38, 40, 41);
     border: solid 2px white;
@@ -60,7 +61,7 @@ a {
     color: white;
 }
 
-.btnUserList {
+.btnUserList, .btnUnflagComment, .btnUnflagEvent {
     float: right;
 }
 

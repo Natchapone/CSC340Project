@@ -197,6 +197,37 @@ async function deleteRSVP(req, res) {
   }
 }
 
+async function unflagEvent(req, res) {
+  try {
+    const eventId = req.body.eventId;
+    await model.unflagEvent(eventId);
+  } catch (error) {
+    console.error("Error unflagging event:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function unflagComment (req, res) {
+  try {
+    const commentId = req.body.commentId;
+    await model.unflagComment(commentId);
+  } catch (error) {
+    console.error("Error unflagging comment:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function unflagUser(req, res) {
+  try {
+    const userId = req.body.userId;
+    await model.unflagUser(userId);
+  } catch (error) {
+    console.error("Error flagging event:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+
 module.exports = {
   //export the functions
   getOrgEvents,
@@ -217,4 +248,8 @@ module.exports = {
   adminFlaggedComments,
   renderUserRSVPdEvents,
   deleteRSVP,
+  unflagEvent,
+  unflagComment,
+  unflagUser,
+
 };

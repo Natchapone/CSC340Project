@@ -39,8 +39,9 @@ document.addEventListener('DOMContentLoaded', function(){
             eventLink.href=`adminEvent.html?eventid=${flaggedEvent.eventId}`;
             eventLink.textContent='GO TO EVENT';
             const unflagButton = document.createElement ('button');
-            unflagButton.classList.add('btnUserList');
+            unflagButton.classList.add('btnUnflagEvent');
             unflagButton.textContent= 'UNFLAG';
+            unflagButton.eventId= flaggedEvent.eventId;
             eventContent.appendChild(eventTitle);
             eventContent.appendChild(breakLine);
             eventContent.appendChild(eventLink);
