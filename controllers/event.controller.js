@@ -136,6 +136,27 @@ async function renderUserPage(req, res) {
   }
 }
 
+async function renderUserRSVPdEvents(req, res) {
+  try {
+    const userId = req.session.userId;
+    const rsvpEvents = await model.getRSVPdEventsWithComments(userId);
+
+    res.render("userRSVPs", { rsvpEvents, userId });
+  } catch (error) {
+    console.error("Error rendering user RSVP'd events page:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+async function deleteRSVP(req, res) {
+  try {
+    const { userId, eventId } = req.body;
+    await model.deleteRSVP(userId, eventId);
+    res.sendStatus(200);
+  } catch (error) {
+    console.error("Error deleting RSVP:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
 
 module.exports = {
   //export the functions
@@ -151,4 +172,6 @@ module.exports = {
   commentFlag,
   commentDelete,
   renderUserPage,
+  renderUserRSVPdEvents,
+  deleteRSVP,
 };

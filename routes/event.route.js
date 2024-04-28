@@ -19,6 +19,8 @@ router.get('/comment/search', eventController.commentSearch);
 router.post('/comment/flag', eventController.commentFlag);
 router.post('/comment/delete', eventController.commentDelete);
 router.get("/events", eventController.renderUserPage);
+router.get("/userRSVPs", eventController.renderUserRSVPdEvents);
+router.delete("/users/events/rsvp/:eventId", eventController.deleteRSVP);
 
 
 module.exports = router;

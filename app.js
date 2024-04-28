@@ -4,12 +4,14 @@ const app = express();
 const session = require("express-session");
 const path = require("path");
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 const multer = require("multer");
 app.use(multer().none());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
 // Initialize express-session
 app.use(session({ secret: 'your-secret-key', resave: false, saveUninitialized: false }));

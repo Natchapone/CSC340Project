@@ -3,25 +3,28 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Spartan Events </title>
+    <title> Your RSVP'd Events </title>
     <link rel="stylesheet" href="/css/user.css">
+    <script src="/scripts/userRSVPs.js" defer></script>
 </head>
 
 <body>
     <div class="container">
         <div class="header">
-            <h1>Spartan Events</h1>
-
+            <h1>Your RSVP'd Events</h1>
             <%- include('./partials/user-nav') %>
-
         </div>
 
         <div class="mainContent">
-            <% events.forEach(event=> { %>
+            <% rsvpEvents.forEach(event=> { %>
                 <div class="eventContent">
 
-                    <form class="rsvpButton" action="/users/events/<%= event.eventId %>/rsvp" method="POST">
-                        <button type="submit">RSVP</button>
+                    <form class="rsvpButton" id="deleteForm_<%= event.eventId %>"
+                        action="/SpartanEvent/users/events/rsvp/<%= event.eventId %>" method="POST">
+                        <input type="hidden" name="userId" value="<%= userId %>">
+                        <input type="hidden" name="eventId" value="<%= event.eventId %>">
+                        <button type="button"
+                            onclick="deleteRSVP('<%= userId %>', '<%= event.eventId %>')">Delete</button>
                     </form>
 
                     <div class="eventContentInner">
@@ -50,7 +53,8 @@
                         </div>
                         <div class="commentbox">
                             <% event.comments.sort((a, b)=> new Date(a.timestamp) - new
-                                Date(b.timestamp)).forEach(comment => { %> <div class="eventDescription">
+                                Date(b.timestamp)).forEach(comment => { %>
+                                <div class="eventDescription">
                                     <p id="comment-user"><strong>
                                             <%= comment.commenterName %>
                                         </strong></p>

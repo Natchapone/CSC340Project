@@ -14,7 +14,8 @@ body {
     height: 150px;
     display: flex;
     align-items: baseline;
-    justify-content: space-between; /*here*/
+    justify-content: space-between;
+    /*here*/
 }
 
 .header h1 {
@@ -47,7 +48,8 @@ a {
     margin-top: 20px;
 }
 
-.btn, .btnUserList {
+.btn,
+.btnUserList {
     margin-right: 20px;
     background-color: rgb(38, 40, 41);
     border: solid 2px white;
@@ -65,7 +67,7 @@ a {
 
 .eventContent {
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     border: solid 2px white;
     min-height: 300px;
 }
@@ -85,7 +87,7 @@ a {
 }
 
 #generalDisplay {
-margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 
@@ -122,22 +124,40 @@ margin-bottom: 10px;
     padding-left: 5px;
 }
 
-.eventDescription, .eventDescription2 {
+.eventDescription,
+.eventDescription2 {
     padding-left: 5px;
     margin-top: 10px;
 }
 
-.eventDescription2{
-    padding:10px;
-} 
+.eventDescription2 {
+    padding: 10px;
+}
 
 .commentbox {
     border: solid 2px white;
-} 
+}
+
+.commentbox p {
+    margin: 0;
+}
+
+.commentbox form {
+    margin-top: 20px;
+}
+
+#comment-user {
+    margin-top: 30px;
+}
+
+#comment-content {
+    margin-top: 2px;
+}
+
 .commentinput {
-    padding: 2px; 
+    padding: 2px;
     width: 934px;
-    
+
 }
 
 #comment-form {
@@ -147,4 +167,11 @@ margin-bottom: 10px;
 #comment-form button {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.rsvpButton {
+    display: flex;
+    justify-content: end;
+    margin-top: 10px;
+    margin-right: 10px;
 }

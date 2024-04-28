@@ -69,6 +69,26 @@ async function postComment(req, res) {
     }
 }
 
+async function rsvp(req, res) {
+    try {
+        const userId = req.session.userId;
+        const eventId = req.params.eventId;
+
+        const existingRSVP = await userModel.getRSVP(userId, eventId);
+
+        if (existingRSVP) {
+            res.status(400).send('You have already RSVP\'d for this event.');
+        } else {
+            await userModel.createRSVP(userId, eventId);
+            res.redirect('/SpartanEvent/events');
+        }
+    } catch (error) {
+        console.error("Error handling RSVP:", error);
+        res.status(500).send("Error handling RSVP");
+    }
+}
+
+
 module.exports = {
     renderLogin,
     login,
@@ -76,4 +96,5 @@ module.exports = {
     renderSignUp,
     signUp,
     postComment,
+    rsvp,
 };

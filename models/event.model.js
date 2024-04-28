@@ -112,6 +112,49 @@ function getEventsWithComments() {
   return Object.values(events);
 }
 
+function getRSVPdEventsWithComments(userId) {
+  const sql = `
+    SELECT e.eventId, e.title, e.eventDate, e.eventTime, e.location, e.imgPath, e.description, c.content AS commentContent, u.userName AS commenterName
+    FROM event e
+    INNER JOIN RSVP r ON e.eventId = r.eventId
+    LEFT JOIN comment c ON e.eventId = c.eventId
+    LEFT JOIN user u ON c.userId = u.userId
+    WHERE r.userId = ?
+    ORDER BY e.eventId, c.userId;`;
+
+  const events = {};
+  const rows = db.all(sql, userId);
+
+  rows.forEach(row => {
+    const eventId = row.eventId;
+    if (!events[eventId]) {
+      events[eventId] = {
+        eventId: eventId,
+        title: row.title,
+        eventDate: row.eventDate,
+        eventTime: row.eventTime,
+        location: row.location,
+        imgPath: row.imgPath,
+        description: row.description,
+        comments: []
+      };
+    }
+    if (row.commentContent) {
+      events[eventId].comments.push({
+        content: row.commentContent,
+        commenterName: row.commenterName
+      });
+    }
+  });
+
+  return Object.values(events);
+}
+
+async function deleteRSVP(userId, eventId) {
+  const sql = "DELETE FROM RSVP WHERE userId = ? AND eventId = ?";
+  return db.run(sql, userId, eventId);
+}
+
 module.exports = {
   // export the functions
   getEventsByOrgId,
@@ -126,5 +169,6 @@ module.exports = {
   commentFlag,
   commentDelete,
   getEventsWithComments,
-
+  getRSVPdEventsWithComments,
+  deleteRSVP,
 };
