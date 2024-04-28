@@ -3,7 +3,7 @@ const adminModel = require('../models/admin.model');
 
 async function signUp(req, res) {
     const { email, password, authorization } = req.body;
-
+    console.log(req.body);
     if (authorization !== "SpartanEvent305") {
         console.error("Authorization error");
         return res.status(403).send("Not Authorized"); 
@@ -20,7 +20,6 @@ async function signUp(req, res) {
         const newAdmin = await adminModel.createAdmin(email, password);
 
         // Redirect to login page after successful sign-up
-        res.redirect('/admin-login.html');
         res.status(200).send("Register successful");
     } catch (error) {
         console.error("Error signing up:", error);
