@@ -15,8 +15,20 @@ async function addComment(userId, eventId, comment) {
     await db.run(sql, comment, userId, eventId, 0);
 }
 
+function getRSVP(userId, eventId) {
+    const sql = 'SELECT * FROM RSVP WHERE userId = ? AND eventId = ?';
+    return db.get(sql, userId, eventId);
+}
+
+function createRSVP(userId, eventId) {
+    const sql = 'INSERT INTO RSVP (userId, eventId) VALUES (?, ?)';
+    return db.run(sql, userId, eventId);
+}
+
 module.exports = {
     getUserByEmail,
     createUser,
     addComment,
+    getRSVP,
+    createRSVP,
 };
