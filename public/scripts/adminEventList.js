@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     function displayFlaggedEvents (flaggedEvents){
-        console.log(flaggedEvents);
         const eventListContainer = document.getElementById('eventListContainer');
         if(flaggedEvents.length === 0){
             eventListContainer.textContent='NO FLAGGED EVENTS';
@@ -41,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function(){
             const unflagButton = document.createElement ('button');
             unflagButton.classList.add('btnUnflagEvent');
             unflagButton.textContent= 'UNFLAG';
-            unflagButton.eventId= flaggedEvent.eventId;
+            unflagButton.setAttribute('eventId', flaggedEvent.eventId);
             eventContent.appendChild(eventTitle);
             eventContent.appendChild(breakLine);
             eventContent.appendChild(eventLink);
@@ -52,8 +51,41 @@ document.addEventListener('DOMContentLoaded', function(){
     }    
 
     function addEventListenersEvents(){
-        
+        const unflagEventButtons = document.querySelectorAll(".btnUnflagEvent");
+        unflagEventButtons.forEach(unflagEvent =>{
+            unflagEvent.addEventListener('click', function(){
+                const eventId = unflagEvent.getAttribute('eventId');
+                unflagEvents(eventId);
+            });
+        });
     }
+
+    function unflagEvents (eventId){
+        const reqBody = {
+            eventId: eventId,
+        }
+        const eventAPI = '/SpartanEvent//Admin/unflagEvent';
+
+        fetch (eventAPI, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(reqBody)
+        })
+        .then(response=> {
+            if (!response.ok){
+                throw new Error ('Response not ok');
+            }
+            return response.json();
+        })
+        .then (data =>{
+        })
+        .catch (error => console.error('Couldnt flag event',error));
+        location.reload();
+    }
+
+
 
     function getFlaggedComments() {
 
