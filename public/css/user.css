@@ -175,11 +175,30 @@ a {
 #comment-form button {
     margin-top: 5px;
     margin-bottom: 5px;
+    background-color: rgb(38, 40, 41);
+    border: solid 2px white;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
 }
 
-.rsvpButton {
+.rsvpbtn {
     display: flex;
     justify-content: end;
     margin-top: 10px;
     margin-right: 10px;
+}
+
+.rsvpbtn button {
+    background-color: rgb(38, 40, 41);
+    border: solid 2px white;
+    padding: 10px;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
 }

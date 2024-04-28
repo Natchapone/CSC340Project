@@ -19,7 +19,7 @@
             <% rsvpEvents.forEach(event=> { %>
                 <div class="eventContent">
 
-                    <form class="rsvpButton" id="deleteForm_<%= event.eventId %>"
+                    <form class="rsvpbtn" id="deleteForm_<%= event.eventId %>"
                         action="/SpartanEvent/users/events/rsvp/<%= event.eventId %>" method="POST">
                         <input type="hidden" name="userId" value="<%= userId %>">
                         <input type="hidden" name="eventId" value="<%= event.eventId %>">
