@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if (!response.ok){
                 throw new Error ('Response not ok');
             }
-            window.location.href='http://localhost:8000/adminEvent.html?eventid=1';
+            window.location.href='http://localhost:8000/adminEventList.html';
             return response;
 
         })

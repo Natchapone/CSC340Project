@@ -19,6 +19,10 @@ router.get('/comment/search', eventController.commentSearch);
 router.post('/comment/flag', eventController.commentFlag);
 router.post('/comment/delete', eventController.commentDelete);
 router.get("/events", eventController.renderUserPage);
+router.post("/user/event/flag",eventController.userEventFlag);
+router.post("/user/comment/flag", eventController.userCommentFlag);
+router.get("/Admin/flaggedEvents", eventController.adminFlaggedEvents);
+router.get("/Admin/flaggedComments", eventController.adminFlaggedComments);
 router.get("/userRSVPs", eventController.renderUserRSVPdEvents);
 router.delete("/users/events/rsvp/:eventId", eventController.deleteRSVP);
 

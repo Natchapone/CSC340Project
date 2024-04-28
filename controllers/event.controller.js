@@ -117,9 +117,8 @@ async function commentFlag(req, res) {
 
 async function commentDelete(req, res) {
   try {
-    const userId = req.body.userId;
-    const eventId = req.body.eventId;
-    await model.commentDelete(userId, eventId);
+    const commentId = req.body.commentId;
+    await model.commentDelete(commentId);
   } catch (error) {
     console.error("Error flagging event:", error);
     res.status(500).send("Internal Server Error");
@@ -132,6 +131,46 @@ async function renderUserPage(req, res) {
     res.render("user", { events });
   } catch (error) {
     console.error("Error rendering user page:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function userEventFlag(req, res) {
+  try {
+    const eventId = req.body.eventId;
+    await model.userEventFlag(eventId);
+  } catch (error) {
+    console.error("Error flagging event:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function userCommentFlag(req, res) {
+  try {
+    const commentId = req.body.commentId;
+    await model.userCommentFlag(commentId);
+  } catch (error) {
+    console.error("Error flagging event:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function adminFlaggedEvents(req, res) {
+  try {
+    const events = await model.adminFlaggedEvents();
+    res.json(events);
+  } catch (error) {
+    console.error("Error fetching flagged events:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function adminFlaggedComments (req, res) {
+  try {
+    const comments = await model.adminFlaggedComments();
+    res.json(comments);
+  } catch (error) {
+    console.error("Error fetching flagged comments:", error);
     res.status(500).send("Internal Server Error");
   }
 }
@@ -172,6 +211,10 @@ module.exports = {
   commentFlag,
   commentDelete,
   renderUserPage,
+  userEventFlag,
+  userCommentFlag,
+  adminFlaggedEvents,
+  adminFlaggedComments,
   renderUserRSVPdEvents,
   deleteRSVP,
 };

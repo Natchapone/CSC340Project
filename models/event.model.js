@@ -55,7 +55,7 @@ function eventFlag(eventId) {
 }
 
 function commentSearch(eventId) {
-  const sql = `SELECT comment.content, comment.userId, comment.eventId,
+  const sql = `SELECT comment.content, comment.userId, comment.eventId, comment.commentId, 
   user.userName 
   FROM comment, user 
   WHERE comment.eventId= ?
@@ -70,15 +70,15 @@ function commentFlag(userId) {
   return db.run(query, [userId]);
 }
 
-function commentDelete(userId, eventId) {
-  const query = `DELETE FROM comment WHERE userId= ?
-  AND eventId=?;`;
-  return db.run(query, [userId, eventId]);
+function commentDelete(commentId) {
+  const query = `DELETE FROM comment WHERE commentId= ?;`;
+  return db.run(query, [commentId]);
 }
 
 function getEventsWithComments() {
   const sql = `
-      SELECT e.eventId, e.title, e.eventDate, e.eventTime, e.location, e.imgPath, e.description, c.content AS commentContent, u.userName AS commenterName
+      SELECT e.eventId, e.title, e.eventDate, e.eventTime, e.location, e.imgPath, e.description, c.content AS commentContent, u.userName AS commenterName,
+      c.commentId
       FROM event e
       LEFT JOIN comment c ON e.eventId = c.eventId
       LEFT JOIN user u ON c.userId = u.userId
@@ -104,13 +104,43 @@ function getEventsWithComments() {
     if (row.commentContent) {
       events[eventId].comments.push({
         content: row.commentContent,
-        commenterName: row.commenterName
+        commenterName: row.commenterName,
+        commentId: row.commentId
       });
     }
   });
 
   return Object.values(events);
 }
+
+function userEventFlag(eventId) {
+  const query = `UPDATE event
+    SET flag = 1
+    WHERE eventId= ?;`;
+  return db.run(query, [eventId]);
+}
+
+function userCommentFlag(commentId) {
+  const query = `UPDATE comment
+    SET flag = 1
+    WHERE commentId= ?;`;
+  return db.run(query, [commentId]);
+}
+
+function adminFlaggedEvents() {
+  const sql = `SELECT *
+  FROM event 
+  WHERE flag= 1;`;
+  return db.all(sql);
+}
+
+function adminFlaggedComments() {
+  const sql = `SELECT *
+  FROM comment 
+  WHERE flag= 1;`;
+  return db.all(sql);
+}
+
 
 function getRSVPdEventsWithComments(userId) {
   const sql = `
@@ -169,6 +199,12 @@ module.exports = {
   commentFlag,
   commentDelete,
   getEventsWithComments,
+  userEventFlag,
+  userCommentFlag,
+  adminFlaggedEvents,
+  adminFlaggedComments,
+
+
   getRSVPdEventsWithComments,
   deleteRSVP,
 };
