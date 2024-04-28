@@ -155,6 +155,26 @@ async function userCommentFlag(req, res) {
   }
 }
 
+async function adminFlaggedEvents(req, res) {
+  try {
+    const events = await model.adminFlaggedEvents();
+    res.json(events);
+  } catch (error) {
+    console.error("Error fetching flagged events:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function adminFlaggedComments (req, res) {
+  try {
+    const comments = await model.adminFlaggedComments();
+    res.json(comments);
+  } catch (error) {
+    console.error("Error fetching flagged comments:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
 
 module.exports = {
   //export the functions
@@ -172,5 +192,7 @@ module.exports = {
   renderUserPage,
   userEventFlag,
   userCommentFlag,
+  adminFlaggedEvents,
+  adminFlaggedComments,
 
 };

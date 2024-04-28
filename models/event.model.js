@@ -127,6 +127,21 @@ function userCommentFlag(commentId) {
   return db.run(query, [commentId]);
 }
 
+function adminFlaggedEvents() {
+  const sql = `SELECT *
+  FROM event 
+  WHERE flag= 1;`;
+  return db.all(sql);
+}
+
+function adminFlaggedComments() {
+  const sql = `SELECT *
+  FROM comment 
+  WHERE flag= 1;`;
+  return db.all(sql);
+}
+
+
 module.exports = {
   // export the functions
   getEventsByOrgId,
@@ -143,6 +158,8 @@ module.exports = {
   getEventsWithComments,
   userEventFlag,
   userCommentFlag,
+  adminFlaggedEvents,
+  adminFlaggedComments,
 
 
 };

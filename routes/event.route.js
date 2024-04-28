@@ -21,6 +21,8 @@ router.post('/comment/delete', eventController.commentDelete);
 router.get("/events", eventController.renderUserPage);
 router.post("/user/event/flag",eventController.userEventFlag);
 router.post("/user/comment/flag", eventController.userCommentFlag);
+router.get("/Admin/flaggedEvents", eventController.adminFlaggedEvents);
+router.get("/Admin/flaggedComments", eventController.adminFlaggedComments);
 
 
 module.exports = router;
