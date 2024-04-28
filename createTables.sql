@@ -46,17 +46,17 @@ CREATE TABLE RSVP(
 	on UPDATE CASCADE
 );
 CREATE TABLE comment (
-	content varchar (300) NOT NULL,
-	userId	INTEGER NOT NULL,
-	eventId	INTEGER NOT NULL,
-	flag INT NOT NULL,
-	PRIMARY KEY (userId, eventId),
-	FOREIGN KEY (userId)
-	REFERENCES user (userId)
-	on DELETE CASCADE
-	on UPDATE CASCADE,
-	FOREIGN KEY (eventId)
-	REFERENCES event (eventId)
-	on DELETE CASCADE
-	on UPDATE CASCADE
+    commentId INTEGER PRIMARY KEY,
+    content varchar (300) NOT NULL,
+    userId  INTEGER NOT NULL,
+    eventId INTEGER NOT NULL,
+    flag INT NOT NULL,
+    FOREIGN KEY (userId)
+    REFERENCES user (userId)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    FOREIGN KEY (eventId)
+    REFERENCES event (eventId)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 );

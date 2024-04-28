@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Spartan Events </title>
+    <link rel="stylesheet" href="/css/user.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Spartan Events</h1>
+
+            <nav class="navigation">
+                <ul class="navbar">
+                    <li><a class="navlink" href="#">View Events</a></li>
+                    <li><a class="navlink" href="#">View RSVPs</a></li>
+                    <li><a class="navlink" href="/account/user/logout">Sign Out</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="mainContent">
+            <% events.forEach(event=> { %>
+                <div class="eventContent">
+                    <div class="eventContentInner">
+                        <div class="eventTitle">
+                            <h2>
+                                <%= event.title %>
+                            </h2>
+                        </div>
+                        <div class="generalDisplay">
+                            <div class="eventImg">
+                                <img src="<%= event.imgPath %>" alt="Event Image">
+                            </div>
+                            <div class="dateTimeLocation">
+                                <p class="date">Date: <%= event.eventDate %>
+                                </p>
+                                <p class="time">Time: <%= event.eventTime %>
+                                </p>
+                                <p class="location">Location: <%= event.location %>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="eventDescription">
+                            <p>
+                                <%= event.description %>
+                            </p>
+                        </div>
+                        <div class="commentbox">
+                            <% event.comments.sort((a, b)=> new Date(a.timestamp) - new
+                                Date(b.timestamp)).forEach(comment => { %> <div class="eventDescription">
+                                    <p><strong>
+                                            <%= comment.commenterName %>
+                                        </strong></p>
+                                    <p>
+                                        <%= comment.content %>
+                                    </p>
+                                </div>
+                                <% }); %>
+                                    <form id="comment-form" action="/users/events/<%= event.eventId %>/comment"
+                                        method="POST">
+                                        <input class="commentinput" type="text" name="comment" placeholder="Comment...">
+                                        <button type="submit">Post Comment</button>
+                                    </form>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+        </div>
+    </div>
+</body>
+
+</html>

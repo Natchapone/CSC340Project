@@ -57,7 +57,7 @@ async function updateEvent(req, res) {
     const eventData = req.body;
     await model.updateEvent(eventId, eventData);
     const orgId = req.body.orgId;
-    res.redirect('/SpartanEvent/OrganizerEvents/' + orgId); 
+    res.redirect('/SpartanEvent/OrganizerEvents/' + orgId);
   } catch (error) {
     console.error("Error updating event:", error);
     res.status(500).send("Internal Server Error");
@@ -118,7 +118,7 @@ async function commentFlag(req, res) {
 async function commentDelete(req, res) {
   try {
     const userId = req.body.userId;
-    const eventId= req.body.eventId;
+    const eventId = req.body.eventId;
     await model.commentDelete(userId, eventId);
   } catch (error) {
     console.error("Error flagging event:", error);
@@ -126,6 +126,15 @@ async function commentDelete(req, res) {
   }
 }
 
+async function renderUserPage(req, res) {
+  try {
+    const events = await model.getEventsWithComments();
+    res.render("user", { events });
+  } catch (error) {
+    console.error("Error rendering user page:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
 
 
 module.exports = {
@@ -141,4 +150,5 @@ module.exports = {
   commentSearch,
   commentFlag,
   commentDelete,
+  renderUserPage,
 };

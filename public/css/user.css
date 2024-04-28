@@ -136,5 +136,15 @@ margin-bottom: 10px;
 } 
 .commentinput {
     padding: 2px; 
-    width: 944px;
+    width: 934px;
+    
+}
+
+#comment-form {
+    margin-left: 5px;
+}
+
+#comment-form button {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
