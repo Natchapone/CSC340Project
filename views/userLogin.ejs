@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Log-in</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="containerInner">
+            <div class="infoBox">
+                <div id="log-sign-up">
+                    <h1>Log In</h1>
+                    <p>Or</p>
+                    <p><a class="link" href="/account/user/signup">Sign Up</a></p>
+                </div>
+                <div class="inputField">
+
+                    <form action="/account/user/login" method="POST" class="infoInput">
+                        <input type="text" placeholder="Email" name="email"> <br>
+                        <input type="password" placeholder="Password" name="password">
+                        <button type="submit">Log In</button>
+                    </form>
+
+                    <% if (error) { %>
+                        <p id="wrong-email-or-password">
+                            <%= error %>
+                        </p>
+                        <% } %>
+
+                            <a id="forgotpassword" href="#">Forgot Password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -31,9 +31,9 @@ async function updateEvent(eventId, eventData) {
 }
 
 function event() {
-  const sql = 'SELECT eventId, title, eventDate, '+
-  'eventTime, location, imgPath, description, flag, orgId '+
-  'FROM event ORDER BY eventId DESC;';
+  const sql = 'SELECT eventId, title, eventDate, ' +
+    'eventTime, location, imgPath, description, flag, orgId ' +
+    'FROM event ORDER BY eventId DESC;';
   return db.all(sql);
 }
 
@@ -44,7 +44,7 @@ function eventSearch(eventId) {
   return db.get(sql, eventId);
 }
 
-function eventFlag (eventId){
+function eventFlag(eventId) {
   const query = `UPDATE organizer
             SET flag = 1
             WHERE orgId = (
@@ -63,17 +63,53 @@ function commentSearch(eventId) {
   return db.all(sql, eventId);
 }
 
-function commentFlag (userId){
+function commentFlag(userId) {
   const query = `UPDATE user
     SET flag = 1
     WHERE userId= ?;`;
   return db.run(query, [userId]);
 }
 
-function commentDelete (userId, eventId){
+function commentDelete(userId, eventId) {
   const query = `DELETE FROM comment WHERE userId= ?
   AND eventId=?;`;
   return db.run(query, [userId, eventId]);
+}
+
+function getEventsWithComments() {
+  const sql = `
+      SELECT e.eventId, e.title, e.eventDate, e.eventTime, e.location, e.imgPath, e.description, c.content AS commentContent, u.userName AS commenterName
+      FROM event e
+      LEFT JOIN comment c ON e.eventId = c.eventId
+      LEFT JOIN user u ON c.userId = u.userId
+      ORDER BY e.eventId, c.userId;`;
+
+  const events = {};
+  const rows = db.all(sql);
+
+  rows.forEach(row => {
+    const eventId = row.eventId;
+    if (!events[eventId]) {
+      events[eventId] = {
+        eventId: eventId,
+        title: row.title,
+        eventDate: row.eventDate,
+        eventTime: row.eventTime,
+        location: row.location,
+        imgPath: row.imgPath,
+        description: row.description,
+        comments: []
+      };
+    }
+    if (row.commentContent) {
+      events[eventId].comments.push({
+        content: row.commentContent,
+        commenterName: row.commenterName
+      });
+    }
+  });
+
+  return Object.values(events);
 }
 
 module.exports = {
@@ -83,11 +119,12 @@ module.exports = {
   deleteEvent,
   getEventById,
   updateEvent,
-  event, 
+  event,
   eventSearch,
   eventFlag,
   commentSearch,
   commentFlag,
   commentDelete,
+  getEventsWithComments,
 
 };

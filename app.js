@@ -22,9 +22,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Define routes
 const eventRouter = require("./routes/event.route");
 const account = require("./routes/account.route");
+const users = require("./routes/user.route");
 
 app.use("/SpartanEvent", eventRouter);
 app.use("/account", account);
+app.use("/users", users);
 
 // route to landing page
 app.get("/", (req, res) => {
