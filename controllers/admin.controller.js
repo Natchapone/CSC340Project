@@ -1,42 +1,48 @@
 "use strict";
-const organizerModel = require('../models/admin.model');
+const adminModel = require('../models/admin.model');
 
 async function signUp(req, res) {
     const { email, password, authorization } = req.body;
-    if (authorization !== "SpartanEvent305"){
-        console.error("Error signing up:", error);
-        res.status(500).send("Not Authorized");
+    console.log(req.body);
+    if (authorization !== "SpartanEvent305") {
+        console.error("Authorization error");
+        return res.status(403).send("Not Authorized"); 
     }
 
     try {
         const existingAdmin = await adminModel.getAdminByEmail(email);
         if (existingAdmin) {
-            throw new Error('Email already exists');
+            console.error("Signup error: Admin already exists");
+            return res.status(409).send("Admin already exists");
         }
 
-        // Create a new organizer
+        // Create a new admin
         const newAdmin = await adminModel.createAdmin(email, password);
 
         // Redirect to login page after successful sign-up
-        res.redirect('/admin-login.html');
+        res.status(200).send("Register successful");
     } catch (error) {
-        // Render sign-up page with error message
         console.error("Error signing up:", error);
+        if (error.name === "ValidationError") {
+            return res.status(400).send("Invalid data provided"); 
+        }
         res.status(500).send("Internal Server Error");
     }
 }
 
 async function login(req, res) {
     const { email, password } = req.body;
+
     const admin = await adminModel.getAdminByEmail(email);
 
     if (!admin || admin.adminPassword !== password) {
-        throw new Error('Invalid Request: No admin or password wrong');
+        console.error("Error login in: Not Admin or Wrong Password");
+        return res.status(401).send("Not Admin or Wrong Password");
     }
 
-    // Set session or token for authenticated user
     req.session.adminId = admin.adminId;
-    res.redirect('/adminEvent.html'); // Redirect to Org event page
+
+    res.status(200).send("Login successful");
 }
 
 async function logout(req, res) {
