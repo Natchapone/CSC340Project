@@ -135,9 +135,11 @@ function adminFlaggedEvents() {
 }
 
 function adminFlaggedComments() {
-  const sql = `SELECT *
-  FROM comment 
-  WHERE flag= 1;`;
+  const sql = `SELECT comment.userId, comment.eventId, comment.content, comment.commentId,
+  user.userName
+  FROM comment, user 
+  WHERE comment.flag= 1
+  AND comment.userId= user.userId;`;
   return db.all(sql);
 }
 
@@ -226,7 +228,7 @@ module.exports = {
   adminFlaggedComments,
   unflagEvent,
   unflagComment,
-  unflagEvent,
+  unflagUser,
 
 
 
