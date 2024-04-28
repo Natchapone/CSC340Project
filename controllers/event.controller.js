@@ -135,6 +135,26 @@ async function renderUserPage(req, res) {
   }
 }
 
+async function userEventFlag(req, res) {
+  try {
+    const eventId = req.body.eventId;
+    await model.userEventFlag(eventId);
+  } catch (error) {
+    console.error("Error flagging event:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function userCommentFlag(req, res) {
+  try {
+    const commentId = req.body.commentId;
+    await model.userCommentFlag(commentId);
+  } catch (error) {
+    console.error("Error flagging event:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
 
 module.exports = {
   //export the functions
@@ -150,4 +170,7 @@ module.exports = {
   commentFlag,
   commentDelete,
   renderUserPage,
+  userEventFlag,
+  userCommentFlag,
+
 };

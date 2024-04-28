@@ -111,6 +111,20 @@ function getEventsWithComments() {
   return Object.values(events);
 }
 
+function userEventFlag(eventId) {
+  const query = `UPDATE event
+    SET flag = 1
+    WHERE eventId= ?;`;
+  return db.run(query, [eventId]);
+}
+
+function userCommentFlag(commentId) {
+  const query = `UPDATE comment
+    SET flag = 1
+    WHERE commentId= ?;`;
+  return db.run(query, [commentId]);
+}
+
 module.exports = {
   // export the functions
   getEventsByOrgId,
@@ -125,5 +139,8 @@ module.exports = {
   commentFlag,
   commentDelete,
   getEventsWithComments,
+  userEventFlag,
+  userCommentFlag,
+
 
 };
