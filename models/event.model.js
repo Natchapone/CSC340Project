@@ -77,7 +77,8 @@ function commentDelete(commentId) {
 
 function getEventsWithComments() {
   const sql = `
-      SELECT e.eventId, e.title, e.eventDate, e.eventTime, e.location, e.imgPath, e.description, c.content AS commentContent, u.userName AS commenterName
+      SELECT e.eventId, e.title, e.eventDate, e.eventTime, e.location, e.imgPath, e.description, c.content AS commentContent, u.userName AS commenterName,
+      c.commentId
       FROM event e
       LEFT JOIN comment c ON e.eventId = c.eventId
       LEFT JOIN user u ON c.userId = u.userId
@@ -103,7 +104,8 @@ function getEventsWithComments() {
     if (row.commentContent) {
       events[eventId].comments.push({
         content: row.commentContent,
-        commenterName: row.commenterName
+        commenterName: row.commenterName,
+        commentId: row.commentId
       });
     }
   });
