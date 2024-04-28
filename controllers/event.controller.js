@@ -117,9 +117,8 @@ async function commentFlag(req, res) {
 
 async function commentDelete(req, res) {
   try {
-    const userId = req.body.userId;
-    const eventId = req.body.eventId;
-    await model.commentDelete(userId, eventId);
+    const commentId = req.body.commentId;
+    await model.commentDelete(commentId);
   } catch (error) {
     console.error("Error flagging event:", error);
     res.status(500).send("Internal Server Error");

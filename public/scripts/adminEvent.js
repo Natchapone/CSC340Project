@@ -151,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function(){
             deleteButton.classList.add ('btnDeleteComment');
             deleteButton.userid= comment.userId;
             deleteButton.eventid= comment.eventId;
+            deleteButton.commentid= comment.commentId;
             deleteButton.textContent='DELETE';
             commentContainer.appendChild(deleteButton);
 
@@ -190,9 +191,8 @@ document.addEventListener('DOMContentLoaded', function(){
         const deleteCommentButtons = document.querySelectorAll('.btnDeleteComment');
         deleteCommentButtons.forEach(deleteCommentButton => {
             deleteCommentButton.addEventListener('click', function (){
-                const userId = this.userid;
-                const eventId = this.eventid;
-                deleteComment(userId, eventId);
+                const commentId = this.commentid;
+                deleteComment(commentId);
             });
         });
 
@@ -263,17 +263,15 @@ document.addEventListener('DOMContentLoaded', function(){
         
     }
 
-    function deleteComment(userId, eventId) {
-        if (!userId|| !eventId){
+    function deleteComment(commentId) {
+        if (!commentId){
             return;
         }
 
         const commentAPI = 'SpartanEvent/comment/delete';
         const reqBody = {
-            userId: userId,
-            eventId: eventId,
+            commentId: commentId,
         }
-
         fetch (commentAPI, {
             method: 'POST',
             headers: {

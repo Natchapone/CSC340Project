@@ -55,7 +55,7 @@ function eventFlag(eventId) {
 }
 
 function commentSearch(eventId) {
-  const sql = `SELECT comment.content, comment.userId, comment.eventId,
+  const sql = `SELECT comment.content, comment.userId, comment.eventId, comment.commentId, 
   user.userName 
   FROM comment, user 
   WHERE comment.eventId= ?
@@ -70,10 +70,9 @@ function commentFlag(userId) {
   return db.run(query, [userId]);
 }
 
-function commentDelete(userId, eventId) {
-  const query = `DELETE FROM comment WHERE userId= ?
-  AND eventId=?;`;
-  return db.run(query, [userId, eventId]);
+function commentDelete(commentId) {
+  const query = `DELETE FROM comment WHERE commentId= ?;`;
+  return db.run(query, [commentId]);
 }
 
 function getEventsWithComments() {
