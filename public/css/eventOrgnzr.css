@@ -61,15 +61,29 @@ a {
     color: white;
 }
 
-#delete-event-btn {
+.delete-event-btn {
+    margin-bottom: 10px;
     margin-left: 20px;
-    margin-bottom: 20px;
-
+    background-color: rgb(38, 40, 41);
+    border: solid 2px white;
+    padding: 10px;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
 }
 
-#edit-event-btn {
-    margin-left: 20px;
-    margin-bottom: 20px;
+.edit-event-btn {
+    margin-left: 10px;
+    background-color: rgb(38, 40, 41);
+    border: solid 2px white;
+    padding: 10px;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
 }
 
 .edit-pic-btn {
@@ -157,4 +171,11 @@ a {
 
 .eventDescription2 {
     padding: 10px;
+}
+
+#editEventForm {
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 100px;
 }
