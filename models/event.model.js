@@ -229,6 +229,16 @@ function adminUnflagOrganizer (orgId) {
   return db.run(query, [userId]);
 }
 
+function adminDeleteUser (userId) {
+  const sql = "DELETE FROM user WHERE userId = ?";
+  return db.run(sql, userId);
+}
+
+function adminDeleteOrganizer(orgId) {
+  const sql = "DELETE FROM organizer WHERE orgId = ?";
+  return db.run(sql, orgId);
+}
+
 module.exports = {
   // export the functions
   getEventsByOrgId,
@@ -253,6 +263,8 @@ module.exports = {
   adminFlaggedUsers,
   adminFlaggedOrganizers,
   adminUnflagOrganizer,
+  adminDeleteUser,
+  adminDeleteOrganizer,
 
 
 

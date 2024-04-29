@@ -257,6 +257,28 @@ async function adminUnflagOrganizer(req, res) {
   }
 }
 
+async function adminDeleteUser(req, res) {
+  try {
+    const userId = req.body.userId;
+    await model.adminDeleteUser(userId);
+    res.sendStatus(200);
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function adminDeleteOrganizer(req, res) {
+  try {
+    const orgId = req.body.orgId;
+    await model.adminDeleteOrganizer(orgId);
+    res.sendStatus(200);
+  } catch (error) {
+    console.error("Error deleting organizer:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
 
 module.exports = {
   //export the functions
@@ -284,4 +306,7 @@ module.exports = {
   adminFlaggedUsers,
   adminFlaggedOrganizers,
   adminUnflagOrganizer,
+  adminDeleteUser,
+  adminDeleteOrganizer,
+
 };

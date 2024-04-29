@@ -31,6 +31,8 @@ router.post("/Admin/unflagUser", eventController.unflagUser);
 router.get("/Admin/flaggedUsers", eventController.adminFlaggedUsers);
 router.get("/Admin/flaggedOrganizers", eventController.adminFlaggedOrganizers);
 router.post("/Admin/unflagOrganizer", eventController.adminUnflagOrganizer);
+router.post("/Admin/deleteUser", eventController.adminDeleteUser);
+router.post("/Admin/deleteOrganizer", eventController.adminDeleteOrganizer);
 
 
 
