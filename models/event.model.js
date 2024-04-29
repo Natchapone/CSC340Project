@@ -226,7 +226,7 @@ function adminUnflagOrganizer (orgId) {
   const query = `UPDATE organizer
     SET flag = 0
     WHERE orgId= ?;`;
-  return db.run(query, [userId]);
+  return db.run(query, [orgId]);
 }
 
 function adminDeleteUser (userId) {

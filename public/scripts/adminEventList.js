@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const reqBody = {
             eventId: eventId,
         }
-        const eventAPI = '/SpartanEvent//Admin/unflagEvent';
+        const eventAPI = '/SpartanEvent/Admin/unflagEvent';
 
         fetch (eventAPI, {
             method: 'POST',

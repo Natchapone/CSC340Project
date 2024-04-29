@@ -12,7 +12,6 @@ create table admin(
 );
 CREATE TABLE organizer(
 	orgId	INTEGER PRIMARY KEY,
-	orgName varchar (50) NOT NULL UNIQUE,
 	orgEmail	varchar (50) NOT NULL UNIQUE,
 	orgPassword		varchar(50) NOT NULL,
 	flag	INT NOT NULL
