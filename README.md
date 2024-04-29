@@ -15,7 +15,7 @@ ejs, better-sqlite3 <br />
 
 Logins: <br />
 User: Email: SampleUser1@gmail.com Password: 123456 <br />
-Organizer: Email: sampleOrg1@gmail.com Password: 123456 <br />
+Organizer: Email: sampleOrg1@gmail.com Password: sampleOrg1 <br />
 Admin: Email: SampleAdmin1@gmail.com Password: 123456 <br />
 If testing signup for Admin the authorization password is: SpartanEvent305
 
