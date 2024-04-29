@@ -59,5 +59,51 @@ document.addEventListener('DOMContentLoaded', function(){
         
     });
 
+    const showMapButtons = document.querySelectorAll(".showMap");
+    showMapButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const locationString = this.getAttribute('location');
+            const mapDiv = this.nextElementSibling; 
+            toggleMap(mapDiv, locationString);
+        });
+    });
+
 
 });
+
+function toggleMap(mapDiv, locationString) {
+    if (mapDiv.classList.contains('hiddenMap')) {
+        mapDiv.classList.remove('hiddenMap');
+        mapDiv.classList.add('shownMap');
+        if (!mapDiv.initialized) {
+            loadMap(mapDiv, locationString);
+            mapDiv.initialized = true;
+        }
+    } else {
+        mapDiv.classList.add('hiddenMap');
+        mapDiv.classList.remove('shownMap');
+    }
+}
+
+function loadMap(mapDiv, locationString) {
+    const map = new google.maps.Map(mapDiv, {
+        zoom: 15,
+        center: { lat: -34.397, lng: 150.644 }
+    });
+    const request = {
+        query: locationString,
+        fields: ['name', 'geometry'],
+    };
+    const service = new google.maps.places.PlacesService(map);
+    service.findPlaceFromQuery(request, function (results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
+            map.setCenter(results[0].geometry.location);
+            new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+        } else {
+            console.error("Place not found: " + status);
+        }
+    });
+}

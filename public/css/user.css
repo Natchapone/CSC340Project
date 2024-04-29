@@ -192,7 +192,7 @@ a {
     margin-right: 10px;
 }
 
-.rsvpbtn button {
+.rsvpbtn button, .showMap {
     background-color: rgb(38, 40, 41);
     border: solid 2px white;
     padding: 10px;
@@ -201,4 +201,21 @@ a {
     cursor: pointer;
     border-radius: 5px;
     color: white;
+}
+
+.showMap {
+    margin: 10px;
+}
+
+.hiddenMap, .shownMap {
+    height: 400px;
+    width: 100%;
+}
+
+.hiddenMap {
+    display: none;
+}
+
+.shownMap{
+    display: block;
 }

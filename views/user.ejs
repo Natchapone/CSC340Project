@@ -6,6 +6,7 @@
     <title> Spartan Events </title>
     <link rel="stylesheet" href="/css/user.css">
     <script src="/scripts/user.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ27Ut6G2QAC7hS2cLGjtS-5D_SmiCVU8&libraries=places"></script>
 </head>
 
 <body>
@@ -49,8 +50,12 @@
                                 <%= event.description %>
                             </p>
                         </div>
-
+                        <button class="showMap" location="<%= event.location %>">View Map</button>
+                        <div map="<%= event.location %>" class="hiddenMap"></div>
+                        <br>
                         <button class="flagEvent" eventid="<%= event.eventId %>">Flag Event</button>
+                        
+                        
 
                         <div class="commentbox">
                             <% event.comments.sort((a, b)=> new Date(a.timestamp) - new
