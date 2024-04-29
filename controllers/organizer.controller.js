@@ -6,7 +6,7 @@ async function renderSignUp(req, res) {
 }
 
 async function signUp(req, res) {
-    const { username, email, password } = req.body;
+    const { email, password } = req.body;
 
     try {
         // Check if the email already exists in the database
@@ -21,7 +21,7 @@ async function signUp(req, res) {
         }
 
         // Create a new organizer
-        const newOrganizer = await organizerModel.createOrganizer(username, email, password);
+        const newOrganizer = await organizerModel.createOrganizer(email, password);
 
         // Redirect to login page after successful sign-up
         res.redirect('/account/OrganizerEvents/login');

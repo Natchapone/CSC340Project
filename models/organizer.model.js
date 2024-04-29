@@ -10,7 +10,7 @@ function getBannedOrganizer(email){
     return db.get('SELECT * FROM banned WHERE bannedEmail = ?', email);
 }
 
-function createOrganizer(username, email, password) {
+function createOrganizer(email, password) {
     return db.run('INSERT INTO organizer (orgEmail, orgPassword, flag) VALUES (?, ?, 0)', [email, password]);
 }
 
