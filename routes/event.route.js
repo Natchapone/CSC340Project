@@ -28,6 +28,9 @@ router.delete("/users/events/rsvp/:eventId", eventController.deleteRSVP);
 router.post("/Admin/unflagEvent", eventController.unflagEvent);
 router.post("/Admin/unflagComment", eventController.unflagComment);
 router.post("/Admin/unflagUser", eventController.unflagUser);
+router.get("/Admin/flaggedUsers", eventController.adminFlaggedUsers);
+router.get("/Admin/flaggedOrganizers", eventController.adminFlaggedOrganizers);
+router.post("/Admin/unflagOrganizer", eventController.adminUnflagOrganizer);
 
 
 

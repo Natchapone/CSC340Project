@@ -227,6 +227,36 @@ async function unflagUser(req, res) {
   }
 }
 
+async function adminFlaggedUsers(req, res) {
+  try {
+    const users = await model.adminFlaggedUsers();
+    res.json(users);
+  } catch (error) {
+    console.error("Error fetching flagged users:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function adminFlaggedOrganizers(req, res) {
+  try {
+    const organizers = await model.adminFlaggedOrganizers();
+    res.json(organizers);
+  } catch (error) {
+    console.error("Error fetching flagged organizers:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function adminUnflagOrganizer(req, res) {
+  try {
+    const orgId = req.body.orgId;
+    await model.adminUnflagOrganizer(orgId);
+  } catch (error) {
+    console.error("Error unflagging organizer:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
 
 module.exports = {
   //export the functions
@@ -251,5 +281,7 @@ module.exports = {
   unflagEvent,
   unflagComment,
   unflagUser,
-
+  adminFlaggedUsers,
+  adminFlaggedOrganizers,
+  adminUnflagOrganizer,
 };

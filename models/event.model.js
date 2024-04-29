@@ -208,6 +208,27 @@ function unflagUser (userId) {
   return db.run(query, [userId]);
 }
 
+function adminFlaggedUsers() {
+  const sql = `SELECT *
+  FROM user 
+  WHERE flag= 1;`;
+  return db.all(sql);
+}
+
+function adminFlaggedOrganizers() {
+  const sql = `SELECT *
+  FROM organizer 
+  WHERE flag= 1;`;
+  return db.all(sql);
+}
+
+function adminUnflagOrganizer (orgId) {
+  const query = `UPDATE organizer
+    SET flag = 0
+    WHERE orgId= ?;`;
+  return db.run(query, [userId]);
+}
+
 module.exports = {
   // export the functions
   getEventsByOrgId,
@@ -229,6 +250,10 @@ module.exports = {
   unflagEvent,
   unflagComment,
   unflagUser,
+  adminFlaggedUsers,
+  adminFlaggedOrganizers,
+  adminUnflagOrganizer,
+
 
 
 
