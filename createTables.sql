@@ -60,3 +60,8 @@ CREATE TABLE comment (
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
+
+CREATE TABLE banned (
+	bannedId INTEGER PRIMARY KEY,
+	bannedEmail varchar (50) NOT NULL UNIQUE
+)
