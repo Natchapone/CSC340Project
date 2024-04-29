@@ -10,7 +10,7 @@ To run application:<br />
 1. initialize node.js with app.js as entry point <br />
 2. install node dependencies: express, multer, sqlite, sqlite3, method-override, express-session,
 ejs, better-sqlite3 <br />
-3. run nodemon app.js on terminal.
+3. run npm start on terminal.
 4. Open index.html and use app. 
 
 Logins: <br />
