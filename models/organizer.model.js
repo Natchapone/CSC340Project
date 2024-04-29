@@ -6,11 +6,17 @@ function getOrganizerByEmail(email) {
     return db.get('SELECT * FROM organizer WHERE orgEmail = ?', email);
 }
 
+function getBannedOrganizer(email){
+    return db.get('SELECT * FROM banned WHERE bannedEmail = ?', email);
+}
+
 function createOrganizer(username, email, password) {
-    return db.run('INSERT INTO organizer (orgName, orgEmail, orgPassword, flag) VALUES (?, ?, ?, 0)', [username, email, password]);
+    return db.run('INSERT INTO organizer (orgEmail, orgPassword, flag) VALUES (?, ?, 0)', [email, password]);
 }
 
 module.exports = {
     getOrganizerByEmail,
     createOrganizer,
+    getBannedOrganizer,
+
 };

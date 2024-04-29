@@ -16,6 +16,12 @@ async function signUp(req, res) {
             return res.status(409).send("Admin already exists");
         }
 
+        const bannedAdmin = await adminModel.getBannedAdmin(email);
+        if (bannedAdmin) {
+            console.error("Signup error: Banned Admin");
+            return res.status(409).send("Banned Admin");
+        }
+
         // Create a new admin
         const newAdmin = await adminModel.createAdmin(email, password);
 

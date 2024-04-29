@@ -15,6 +15,11 @@ async function signUp(req, res) {
             throw new Error('Email already exists');
         }
 
+        const bannedUser = await userModel.getBannedUser(email);
+        if (bannedUser){
+            throw new Error('Banned User');
+        }
+
         // Create a new user
         const newUser = await userModel.createUser(username, email, password);
 

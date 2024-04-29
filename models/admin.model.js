@@ -6,6 +6,10 @@ function getAdminByEmail(email) {
     return db.get('SELECT * FROM admin WHERE adminEmail = ?', email);
 }
 
+function getBannedAdmin(email) {
+    return db.get('SELECT * FROM  banned WHERE bannedEmail = ?', email);
+}
+
 function createAdmin(email, password) {
     return db.run('INSERT INTO admin (adminEmail, adminPassword) VALUES (?, ?)', [email, password]);
 }
@@ -13,4 +17,5 @@ function createAdmin(email, password) {
 module.exports = {
     getAdminByEmail,
     createAdmin,
+    getBannedAdmin,
 };

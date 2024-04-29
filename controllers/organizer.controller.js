@@ -15,6 +15,11 @@ async function signUp(req, res) {
             throw new Error('Email already exists');
         }
 
+        const bannedOrganizer = await organizerModel.getBannedOrganizer(email);
+        if (bannedOrganizer){
+            throw new Error('Banned Organizer');
+        }
+
         // Create a new organizer
         const newOrganizer = await organizerModel.createOrganizer(username, email, password);
 

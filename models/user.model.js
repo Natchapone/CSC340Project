@@ -6,6 +6,10 @@ function getUserByEmail(email) {
     return db.get('SELECT * FROM user WHERE userEmail = ?', email);
 }
 
+function getBannedUser(email) {
+    return db.get('SELECT * FROM banned WHERE bannedEmail = ?', email);
+}
+
 function createUser(username, email, password) {
     return db.run('INSERT INTO user (userName, userEmail, userPassword, flag) VALUES (?, ?, ?, 0)', [username, email, password]);
 }
@@ -31,4 +35,6 @@ module.exports = {
     addComment,
     getRSVP,
     createRSVP,
+    getBannedUser,
+
 };
