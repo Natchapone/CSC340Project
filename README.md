@@ -11,7 +11,7 @@ To run application:<br />
 2. install node dependencies: express, multer, sqlite, sqlite3, method-override, express-session,
 ejs, better-sqlite3 <br />
 3. run npm start on terminal.
-4. Open index.html and use app. 
+4. Open http://localhost:8000 on browser and use app. 
 
 Logins: <br />
 User: Email: SampleUser1@gmail.com Password: 123456 <br />
