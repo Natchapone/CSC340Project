@@ -17,7 +17,7 @@ Logins: <br />
 User: Email: SampleUser1@gmail.com Password: 123456 <br />
 Organizer: Email: sampleOrg1@gmail.com Password: 123456 <br />
 Admin: Email: SampleAdmin1@gmail.com Password: 123456 <br />
-If testing signup for Admin the authorization passwors is: SpartanEvent305
+If testing signup for Admin the authorization password is: SpartanEvent305
 
 >Spartan Event (SE) is a tool for event organizers to communicate with
 >UNCG students. Its design allows for seamless use and accessible use. 
