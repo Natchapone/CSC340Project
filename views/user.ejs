@@ -58,8 +58,8 @@
                         
 
                         <div class="commentbox">
-                            <% event.comments.sort((a, b)=> new Date(a.timestamp) - new
-                                Date(b.timestamp)).forEach(comment => { %> <div class="eventDescription">
+                            
+                            <% event.comments.forEach(comment => { %> <div class="eventDescription">
                                     <p id="comment-user"><strong>
                                             <%= comment.commenterName %>
                                         </strong></p>

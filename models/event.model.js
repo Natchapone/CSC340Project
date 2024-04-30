@@ -82,7 +82,7 @@ function getEventsWithComments() {
       FROM event e
       LEFT JOIN comment c ON e.eventId = c.eventId
       LEFT JOIN user u ON c.userId = u.userId
-      ORDER BY e.eventId, c.userId;`;
+      ORDER BY e.eventId, c.commentId ASC;`;
 
   const events = {};
   const rows = db.all(sql);

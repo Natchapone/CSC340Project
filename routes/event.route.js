@@ -35,5 +35,4 @@ router.post("/Admin/deleteUser", eventController.adminDeleteUser);
 router.post("/Admin/deleteOrganizer", eventController.adminDeleteOrganizer);
 
 
-
 module.exports = router;
